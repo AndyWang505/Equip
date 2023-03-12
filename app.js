@@ -15,8 +15,14 @@ app.use(
     })
 );
 
-app.get("/",function(req,res){
-    res.send(getItemList);
+app.get("/", async function(req,res){
+    try{
+        const itemList = await getItemList;
+        res.send(itemList);
+    }catch(err){
+        console.error(err);
+        res.status(500).send("Internal Server Error!!");
+    }
 });
 
 // main
@@ -34,7 +40,8 @@ fetch(apiUrl,{})
         return res.json();
     }).then((data) => {
         result = data.forEach( value => {
-            const substrings = ['頂級培羅德', '天上的氣息', '神秘冥界', '創世', '苦痛', '巨大的恐怖', '口紅控制', '附有魔力', '魔性', '米特拉的憤怒', '女武神', '航海師'];
+            const substrings = ['頂級培羅德', '天上的氣息', '神秘冥界', '創世', '苦痛', '巨大的恐怖', '口紅控制',
+                                 '附有魔力', '魔性', '米特拉的憤怒', '女武神之心', '鈦之心', '妖精之心', '機器心臟', '航海師'];
             const regex = new RegExp(substrings.join('|'), 'g');
             function compareStr(str){
                 if (str.match(regex)){
@@ -42,7 +49,7 @@ fetch(apiUrl,{})
                 }else return false;
             }
             if ((value.name && compareStr(value.name)) 
-                && value.isCash === false && value.typeInfo.category !== 'Other' && value.typeInfo.subCategory !== 'Other' && value.typeInfo.subCategory !== 'Pet Food' && value.typeInfo.subCategory !== 'Zero'){
+                && value.isCash === false && value.typeInfo.overallCategory !== 'Etc' && value.typeInfo.overallCategory !== 'Use' && value.typeInfo.subCategory !== 'Pet Food' && value.typeInfo.subCategory !== 'Zero'){
                     // if repeat then ignore
                     if (!(value.name in result)) {
                         resultId.push(value.id);
@@ -51,14 +58,9 @@ fetch(apiUrl,{})
             }
         });
         console.log(resultId.length);
-        // console.log(data);
+        // let item = data.find(element => element.name == 'XXX');
+        // console.log(item);
         findIdItem();
-        // check & get id's item
-        // resultId.forEach(function(value){
-        //     let item = data.find(element => value == element.id);
-        //     // console.log(item);
-        //     needItem.push(item);
-        // })
     }).catch((err) => {
         console.log(err);
     });
