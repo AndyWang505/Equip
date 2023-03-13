@@ -93,4 +93,4 @@ async function findIdItem(){
 };
 
 findIdItem();
-setInterval(function(){ findIdItem(); },60000);
+setInterval(function(){ findIdItem(); },140000);
