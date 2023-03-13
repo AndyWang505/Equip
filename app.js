@@ -40,7 +40,7 @@ fetch(apiUrl,{})
         return res.json();
     }).then((data) => {
         result = data.forEach( value => {
-            const substrings = ['頂級培羅德', '天上的氣息', '神秘冥界', '創世', '苦痛', '巨大的恐怖', '口紅控制',
+            const substrings = ['頂級培羅德', '天上的氣息', '神秘冥界', '創世', '苦痛', '巨大的恐怖', '口紅控制', '滅龍騎士',
                                  '附有魔力', '魔性', '米特拉的憤怒', '女武神之心', '鈦之心', '妖精之心', '機器心臟', '航海師'];
             const regex = new RegExp(substrings.join('|'), 'g');
             function compareStr(str){
