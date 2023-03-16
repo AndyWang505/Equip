@@ -86,6 +86,10 @@ async function findIdItem(){
             delete rest.metaInfo.icon;
             delete rest.metaInfo.vslots;
             delete rest.metaInfo.islots;
+            delete rest.metaInfo.charmEXP;
+            delete rest.metaInfo.tradeAvailable;
+            delete rest.metaInfo.setCompleteCount;
+            delete rest.metaInfo.bossReward;
             return { ...rest };
         });
         console.log('update...');
