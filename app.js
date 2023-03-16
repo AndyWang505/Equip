@@ -82,6 +82,8 @@ async function findIdItem(){
             delete rest.metaInfo.iconRawOrigin;
             delete rest.metaInfo.iconOrigin;
             delete rest.metaInfo.mob;
+            delete rest.metaInfo.iconRaw;
+            delete rest.metaInfo.icon;
             delete rest.metaInfo.vslots;
             delete rest.metaInfo.islots;
             return { ...rest };
